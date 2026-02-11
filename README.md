@@ -1,7 +1,7 @@
 # WADS-Project
 
 ## Team Members:
-### 1. Nicholas Nixon
+### 1. Nicholas Nixon Iswanto
 ### 2. Allenxavinzky Adjiewibowo
 
 
