@@ -27,7 +27,7 @@
 
 # 4. Technology Stack (Mandatory)
 
-##### Frontend - Next.js
+#### Frontend - Next.js
 #### Backend - Node.js
 #### API - REST API
 #### Database - PosteGreSQL
