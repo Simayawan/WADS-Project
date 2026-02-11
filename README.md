@@ -5,7 +5,26 @@
 ### 2. Allenxavinzky Adjiewibowo
 
 
-# Week 1 Progress
+# Project Information
+
+### Project title:
+### Homework Question and Answer assistant
+
+### Project Domain:
+### Homework Question and Answer assistant
+
+### Class:
+### LEC: B4BC
+### LAB: L4BC
+
+### Group Members:
+### 1. Nicholas Nixon Iswanto - 2802546664 - Backend - NicholasNixon10
+### 2. Allenxavinzky Adjiewibowo - 2802467889 - Frontend, UI design, & AI implementation - Simayawan
+
+
+
+
+
 
 ## Architecture
 
