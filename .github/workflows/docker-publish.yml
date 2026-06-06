@@ -1,0 +1,28 @@
+name: Cloud-Ready CD Pipeline
+
+on:
+  push:
+    branches: [ main ] 
+
+jobs:
+  publish-to-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push to Cloud
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # This creates a versioned image in the cloud
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/haq-app:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/haq-app:${{ github.sha }}
