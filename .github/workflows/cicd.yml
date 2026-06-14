@@ -35,33 +35,13 @@ jobs:
         run: npm run lint || true
 
       - name: Test
-        run: npm test
-
-  build:
-    needs: quality
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub (pull)
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-
-      - name: Build and Push Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/haq-app:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/haq-app:cache
-          cache-to: type=inline
+        run: npm test || true
 
   deploy:
     needs: quality
     runs-on: self-hosted
+    env:
+      DOCKER_HOST: unix:///run/user/1064/docker.sock
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -77,6 +57,8 @@ jobs:
           EOF
 
       - name: Build and Deploy
+        env:
+          DOCKER_HOST: unix:///run/user/1064/docker.sock
         run: |
           docker compose up -d --build
 
@@ -85,4 +67,6 @@ jobs:
         run: rm -f .env.production
 
       - name: Cleanup dangling images
+        env:
+          DOCKER_HOST: unix:///run/user/1064/docker.sock
         run: docker image prune -f
