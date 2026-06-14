@@ -1,6 +1,5 @@
 name: Project Build Check
 
-# 1. Trigger: Run this every time code is pushed to 'main'
 on:
   push:
     branches: [ main ]
@@ -9,27 +8,27 @@ on:
 
 jobs:
   test-build:
-    runs-on: ubuntu-latest # The virtual machine GitHub provides
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Copy your code onto the GitHub machine
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Step 2: Install Node.js (Version 20 to match your Docker)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      # Step 3: Install dependencies (with your legacy flag)
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      # Step 4: Generate Prisma (Critical for your project!)
       - name: Prisma Generate
+        env:
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci?sslmode=disable
         run: npx prisma generate
 
-      # Step 5: The Build Test
       - name: Run Next.js Build
+        env:
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci?sslmode=disable
         run: npm run build
