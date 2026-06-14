@@ -1,36 +1,55 @@
-# Installing the dependencies
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json package-lock.json ./
 
-# Timeout issue resolution
-RUN npm config set fetch-retry-maxtimeout 600000 && \
-    npm config set fetch-retries 5 && \
-    npm install --legacy-peer-deps --network-timeout=1000000
+# Install required system libs for native modules
+RUN apk add --no-cache libc6-compat openssl
 
-# Building the application
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY package*.json ./
+COPY prisma ./prisma/
 
-# Generate the Prisma client
+# Install ALL deps (including dev, needed for build)
+RUN npm ci
+
+# Generate Prisma client
 RUN npx prisma generate
 
-# Building the app
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/prisma ./prisma
+COPY . .
+
+# Set to production for the build
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
 RUN npm run build
 
-# The Runner
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+RUN apk add --no-cache openssl
 
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Create a non-root user for security
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy only what's needed to run
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+
+USER nextjs
 
 EXPOSE 3000
-CMD ["npm", "start"]
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]

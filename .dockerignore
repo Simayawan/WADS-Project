@@ -1,6 +1,31 @@
+# Dependencies
 node_modules
+npm-debug.log*
+
+# Next.js build output
 .next
+out
+
+# Env files (injected at runtime via docker-compose)
+.env
+.env.local
+.env.development
+.env.*.local
+
+# Git
 .git
-target
-dist
+.gitignore
+
+# Dev/test files
+README.md
+*.test.*
+*.spec.*
+__tests__
+coverage
+jest.config.*
+
+# Misc
+.DS_Store
 *.log
+.vscode
+.idea

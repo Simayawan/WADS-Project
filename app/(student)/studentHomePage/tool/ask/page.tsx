@@ -28,7 +28,7 @@ export default function StudentChat() {
       const savedUserId = localStorage.getItem("userId");
       const numericUserId = savedUserId ? parseInt(savedUserId) : 1;
 
-      // 3. Forward the accumulated conversation path over to the updated endpoint configuration
+      // Forward the accumulated conversation path over to the updated endpoint configuration
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: {
