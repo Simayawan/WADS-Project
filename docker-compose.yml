@@ -5,9 +5,9 @@ services:
       dockerfile: Dockerfile
     container_name: haq-app
     restart: always
-    network_mode: host
+    ports:
+      - "3023:3000"
     env_file:
       - .env.production
     environment:
       - NODE_ENV=production
-      - PORT=3023
