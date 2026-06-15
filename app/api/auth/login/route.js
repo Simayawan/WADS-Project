@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const connectionString = process.env.DATABASE_URL;
     
-    // Explicit error check to verify if Next.js actually found your .env.local file
+    //Explicit error check to verify if Next.js actually found your .env.local file
     if (!connectionString) {
       console.error("[CRITICAL AUTH ERROR]: Next.js could not load your .env.local file keys.");
       return NextResponse.json({ 
@@ -14,7 +14,7 @@ export async function POST(request) {
       }, { status: 500 });
     }
 
-    // Initialize neon securely using the validated environment key
+    //Initialize neon securely using the validated environment key
     const sql = neon(connectionString);
     
     const { email, password } = await request.json();
@@ -23,22 +23,22 @@ export async function POST(request) {
       return NextResponse.json({ message: "Email and password required" }, { status: 400 });
     }
 
-    // Query for the user by email
+    //Query for the user by email
     const users = await sql`SELECT * FROM "User" WHERE email = ${email} LIMIT 1`;
     const user = users[0];
 
-    // Verify user exists and password matches
+    //Verify user exists and password matches
     if (!user || user.password !== password) {
       return NextResponse.json({ message: "Invalid email or password" }, { status: 401 });
     }
 
-    // Create response and set cookie
+    //Create response and set cookie
     const response = NextResponse.json({ 
       message: "Login successful!", 
       user: { id: user.id, email: user.email } 
     }, { status: 200 });
     
-    // Simple session cookie for middleware
+    //Simple session cookie for middleware
     response.cookies.set('token', 'session_active', { 
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
