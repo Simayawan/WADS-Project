@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react"; // Added React import for types
+import React, { useState } from "react"; 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -11,11 +11,10 @@ export default function SignUpPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
-  // FIX: Explicitly typed 'e' as React.FormEvent
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. FRONTEND VALIDATION (Security Requirement)
+    //FRONTEND VALIDATION
     if (password !== confirmPassword) {
       alert("Passwords do not match. Security check failed.");
       return;
@@ -26,7 +25,7 @@ export default function SignUpPage() {
       return;
     }
 
-    // 2. DATA TRANSMISSION
+    //DATA TRANSMISSION
     try {
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -40,7 +39,6 @@ export default function SignUpPage() {
         alert("Registration failed. Please check your inputs.");
       }
     } catch (err: any) {
-      // Improved error logging for Week 10 requirements
       console.error("Connection error during sign-up:", err.message);
     }
   };

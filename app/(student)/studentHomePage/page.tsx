@@ -40,7 +40,6 @@ export default function StudentLayout() {
 
   return (
     <div>
-      {/* NAVBAR - Adjusted with active structural routes and Sticky Top feature */}
       <div className="bg-gray-200 p-4 flex justify-end gap-2 sticky top-0 z-50 shadow-sm">
         <Link href="/studentHomePage/tool/ask">
           <Button variant="outline" className="bg-gray-400">

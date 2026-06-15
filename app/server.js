@@ -1,3 +1,5 @@
+// Not used
+
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet'); // Web Security Requirement
@@ -30,7 +32,6 @@ app.post('/api/auth/register',
 
     try {
       const { username, password } = req.body;
-      // Here you would normally hash the password and save to MongoDB
       res.status(201).json({ message: "User data validated and sanitized successfully" });
     } catch (err) {
       res.status(500).send("Server Error");

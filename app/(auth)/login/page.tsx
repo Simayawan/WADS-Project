@@ -10,17 +10,16 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // FIX: Added 'React.FormEvent' to the parameter 'e'
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. FRONTEND VALIDATION (Security requirement)
+    //FRONTEND VALIDATION
     if (!email.includes("@") || password.length < 6) {
       alert("Invalid input detected. Security check failed.");
       return;
     }
 
-    // 2. BACKEND SECURITY CHECK
+    //BACKEND SECURITY CHECK
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
@@ -29,11 +28,9 @@ export default function LoginPage() {
       });
 
       if (response.ok) {
-        // 1. Get the data from the response
+        //Get the data from the response
         const data = await response.json();
-        
-        // 2. Save the userId (this is the key for the AI History)
-        // data.user.id comes from the backend route we just updated
+
         localStorage.setItem("userId", data.user.id);
         
         router.push("/studentHomePage");
@@ -41,7 +38,7 @@ export default function LoginPage() {
         alert("Unauthorized access attempt.");
       }
     } catch (err: any) {
-      // FIX: Improved logging for your Week 10 Log Testing
+
       console.error("Secure error handling triggered:", err.message);
     }
   };

@@ -24,7 +24,6 @@ export default function StudentChat() {
     setLoading(true);
 
     try {
-      // DYNAMIC FIX: Extract your actual Neon User identity key out of the browser memory
       const savedUserId = localStorage.getItem("userId");
       const numericUserId = savedUserId ? parseInt(savedUserId) : 1;
 
@@ -37,7 +36,7 @@ export default function StudentChat() {
         body: JSON.stringify({ 
           messagesHistory: updatedHistory, // Pass the full state history instead of a solitary message text
           image: imageB64,
-          userId: numericUserId // Linked directly to your active Neon session
+          userId: numericUserId // Linked directly to the active Neon session
         }),
       });
       
@@ -56,7 +55,6 @@ export default function StudentChat() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* STICKY NAVBAR: This will now follow you down */}
       <div className="bg-gray-200 p-4 flex justify-end gap-2 sticky top-0 z-50 shadow-sm">
         <Link href="/studentHomePage">
           <Button variant="outline" className="bg-gray-400">Back</Button>
@@ -78,7 +76,6 @@ export default function StudentChat() {
           <div key={i} className={`p-4 rounded-xl shadow-sm max-w-2xl ${m.role === 'user' ? 'bg-blue-50 ml-auto border' : 'bg-white border'}`}>
             <p className="text-sm font-bold mb-1">{m.role === 'user' ? 'You' : 'AI Assistant'}</p>
             
-            {/* DESIGN UNTOUCHED: Kept container space intact, swapping paragraph tag for Markdown core engine */}
             <div className="prose max-w-none text-base break-words math-rendered-container">
               <ReactMarkdown 
                 remarkPlugins={[remarkMath]} 
@@ -98,7 +95,6 @@ export default function StudentChat() {
         {loading && <p className="text-gray-400 animate-pulse">AI is thinking...</p>}
       </div>
 
-      {/* INPUT BAR (STAYS AT BOTTOM) */}
       <div className="fixed bottom-6 left-0 w-full flex justify-center px-4">
         <div className="w-full max-w-2xl bg-white p-4 rounded-xl shadow-lg border flex gap-2">
           <input
