@@ -47,7 +47,6 @@ detail.
 
 ### 3.2 Solution Overview
 
-[Briefly describe:]
 There are two main features of this Web App:  
 - OCR
 - NLP
