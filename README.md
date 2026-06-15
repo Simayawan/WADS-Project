@@ -301,8 +301,8 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 ### 11.1 Docker Setup
 
-- ✅ Dockerfile included
-- ✅ docker-compose.yml included
+- Dockerfile included
+- docker-compose.yml included
 
 ### 11.2 Production Environment
 
