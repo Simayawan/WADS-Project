@@ -84,7 +84,7 @@ These solutions are appropriate for the problems faced by students because:
 
 ### 5.1 Architecture Diagram
 
-[Insert architecture diagram here]
+![ERD Diagram](docs/ArchitectureDiagram.drawio.png)
 
 ### 5.2 Architecture Explanation
 
