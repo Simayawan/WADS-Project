@@ -163,7 +163,7 @@ PostgreSQL hosted on NeonDB (serverless) was chosen for:
 
 ### 7.2 Schema / Data Structure
 
-[Insert ERD diagram here]
+![ERD Diagram](WADS_ERD.drawio.png)
 
 ```prisma
 model User {
