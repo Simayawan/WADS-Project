@@ -1,5 +1,3 @@
-//Redundant file, we switched to NeonDB
-
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({

@@ -4,9 +4,10 @@ import OpenAI from 'openai';
 import { extractTextFromImage } from './ocr/route.js';
 
 
+// API key must be encrypted
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  
+  // FIX: Provide a fallback string ("BUILD_FALLBACK") so the build passes safely
   apiKey: process.env.OPENROUTER_API_KEY || "BUILD_FALLBACK", 
   defaultHeaders: {
     "HTTP-Referer": "http://localhost:3000",
@@ -18,11 +19,11 @@ export async function POST(request) {
   try {
     const sql = neon(process.env.DATABASE_URL);
     
-    // Destructure message and messagesHistory together to create a fallback structure
+    // Destructure message and messagesHistory together to create a bulletproof fallback structure
     const { message, messagesHistory, image, userId } = await request.json();
     const numericUserId = parseInt(userId) || 1;
 
-    // Resolve active history timeline loop array
+    // 1. Resolve active history timeline loop array
     let activeChatHistory = messagesHistory || [];
     
     // Fallback: If messagesHistory is entirely empty, seed it with the standard input message payload
@@ -33,7 +34,7 @@ export async function POST(request) {
     const lastUserMessageIndex = activeChatHistory.length - 1;
     let finalPromptContent = activeChatHistory[lastUserMessageIndex]?.content || message || "";
 
-    // If an image payload is passed, delegate the processing to our standalone utility file
+    // 2. If an image payload is passed, delegate the processing to our standalone utility file
     if (image) {
       console.log("DEBUG: Calling standalone OCR utility module...");
       const extractedText = await extractTextFromImage(image);
@@ -47,7 +48,7 @@ export async function POST(request) {
       }
     }
 
-    // Pass the entire updated multi-turn conversation down to DeepSeek for continuous memory flow
+    // 3. Pass the entire updated multi-turn conversation down to DeepSeek for continuous memory flow
     const completion = await openai.chat.completions.create({
       model: "deepseek/deepseek-v4-flash", 
       messages: [
@@ -61,7 +62,7 @@ export async function POST(request) {
 
     const aiReply = completion.choices[0].message.content;
 
-    // Build defensive string fallback assignments
+    // 4. PREVENT NULL CONSTRAINT VIOLATIONS: Build defensive string fallback assignments
     let savedContent = "";
     if (image) {
       const displayMessage = message || (messagesHistory && messagesHistory[lastUserMessageIndex]?.content);
@@ -71,7 +72,7 @@ export async function POST(request) {
       savedContent = (messagesHistory && messagesHistory[lastUserMessageIndex]?.content) || message || "";
     }
 
-    // If string evaluates to null/empty/spaces, push an absolute fallback string
+    // ULTIMATE SANITIZER: If string evaluates to null/empty/spaces, push an absolute fallback string
     if (!savedContent || typeof savedContent !== 'string' || !savedContent.trim()) {
       savedContent = "Normal Chat Question";
     }
@@ -79,7 +80,7 @@ export async function POST(request) {
     const secureAiReply = aiReply && aiReply.trim() ? aiReply : "I am processing your query.";
     const now = new Date().toISOString();
     
-    // Executes atomic multi-row raw insertion query safely
+    // 5. Execute your atomic multi-row raw insertion query safely
     await sql`
       INSERT INTO "Chat" (content, role, "userId", "createdAt", "updatedAt") 
       VALUES (${savedContent}, 'user', ${numericUserId}, ${now}, ${now}),
