@@ -1,4 +1,3 @@
-// app/api/docs/route.js
 import { NextResponse } from 'next/server';
 import { spec } from './swagger';
 

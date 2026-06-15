@@ -1,6 +1,6 @@
 export async function extractTextFromImage(base64Image) {
   try {
-    // 1. SAFETY INTERCEPTOR: Make sure an empty file upload doesn't break the function
+    // Makes sure an empty file upload doesn't break the function
     if (!base64Image) {
       console.error("[OCR ERROR]: No image payload data was sent to the extractor.");
       return "[OCR Error: Image payload is empty]";
@@ -8,7 +8,6 @@ export async function extractTextFromImage(base64Image) {
 
     console.log("[OCR] Cleaning up base64 metadata headers...");
 
-    // 2. DATA SANITIZATION:
     // If the image string has a frontend file metadata header (e.g., "data:image/png;base64,..."),
     // split it and keep only the raw base64 character blocks.
     let cleanBase64 = base64Image;
@@ -18,10 +17,9 @@ export async function extractTextFromImage(base64Image) {
 
     console.log("[OCR] Sending sanitized image data to OCR.space...");
 
-    // 3. MULTIPART FORM BOUNDARY FORMULATION
+//MULTIPART FORM BOUNDARY FORMULATION
     const formData = new FormData();
     
-    // OCR.space requires the exact prefix "data:image/png;base64," attached to your cleaned base64 string
     formData.append("base64Image", `data:image/png;base64,${cleanBase64}`);
     formData.append("language", "eng");
     formData.append("isOverlayRequired", "false");

@@ -1,3 +1,5 @@
+// Not used anymore since we switched to NeonDB
+
 import mongoose from 'mongoose';
 
 // Hardcode the string temporarily to prove the connection works

@@ -1,4 +1,3 @@
-// app/api/docs/swagger.js
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const options = {
@@ -15,7 +14,7 @@ const options = {
         description: process.env.NEXT_PUBLIC_APP_URL ? 'Production Server' : 'Local Development Server',
       },
     ],
-    // WE DEFINE THE API PATHS HERE SECURELY USING JAVASCRIPT OBJECTS (NO MORE EXTRACTED COMMENTS!)
+
     paths: {
       '/api/login': {
         post: {
@@ -103,7 +102,7 @@ const options = {
       }
     }
   },
-  // Leave this blank since we are defining paths directly above instead of searching files
+ 
   apis: [], 
 };
 

@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const connectionString = process.env.DATABASE_URL;
     
-    // Explicit error check to verify if Next.js actually found your .env.local file
+    // Explicit error check to verify if Next.js actually found the .env.local file
     if (!connectionString) {
       console.error("[CRITICAL AUTH ERROR]: Next.js could not load your .env.local file keys.");
       return NextResponse.json({ 
