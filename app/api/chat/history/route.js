@@ -3,7 +3,7 @@ import { neon } from '@neondatabase/serverless';
 
 export async function GET(request) {
   try {
-    const sql = neon("postgresql://neondb_owner:npg_Ex4adS0DFTgX@ep-crimson-dust-aofjvsj8-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require");
+    const sql = neon(process.env.DATABASE_URL);
     
     // Extract userId from query parameters (e.g., /api/chat/history?userId=1)
     const { searchParams } = new URL(request.url);
