@@ -17,7 +17,7 @@
 | Name | Student ID | Role | GitHub Username |
 |------|------------|------|-----------------|
 |Allenxavinzky Adjiewibowo|2802467880|Frontend, AI Implementation|Simayawan|
-|Nicholas Nixon|2802546664|Testing, Backend|NicholasNixon10|
+|Nicholas Nixon Iswanto|2802546664|Testing, Backend|NicholasNixon10|
 ---
 
 ## 2. Instructor & Repository Access
@@ -397,7 +397,7 @@ We declare that:
 
 **Signed by Group Members:**
 - Allenxavinzky Adjiewibowo
-- Nicholas Nixon
+- Nicholas Nixon Iswanto
 
 ---
 
