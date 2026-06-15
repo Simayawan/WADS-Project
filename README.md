@@ -252,12 +252,14 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 | Test Case | Attack Type | Expected Behavior | Result |
 |-----------|-------------|-------------------|--------|
-| SEC-01 | XSS — script tag in chat input | Input sanitized, script not executed | Pass/Fail |
-| SEC-02 | SQL Injection in login | Query blocked by Prisma ORM | Pass/Fail |
-| SEC-03 | Access protected route without token | 401 Unauthorized returned | Pass/Fail |
-| SEC-04 | Prompt injection in chat | AI response stays within bounds | Pass/Fail |
-| SEC-05 | Brute force login | Rate limiting triggers | Pass/Fail |
-| SEC-06 | Upload malicious file via OCR | File type validation rejects it | Pass/Fail |
+| SEC-01 | XSS — script tag in chat input | Input sanitized, script not executed | Pass |
+| SEC-02 | SQL Injection in login | Query blocked by Prisma ORM | Pass |
+| SEC-03 | Access protected route without token | 401 Unauthorized returned | Pass |
+| SEC-04 | Prompt injection in chat | AI response stays within bounds | Pass |
+| SEC-05 | Brute force login | Rate limiting triggers | Fail* |
+| SEC-06 | Upload malicious file via OCR | File type validation rejects it | Pass |
+
+*Rate limiting was not implemented
 
 ### 10.4 AI Functionality Testing
 
