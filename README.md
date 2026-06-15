@@ -110,7 +110,6 @@ The Next.js frontend communicates with the database using the API routes, always
 ### 6.2 API Documentation
 
 - Swagger docs available at: `https://e2526-wads-b4bc-02.csbihub.id/api-docs`
-- [Postman collection link if available]
 
 **Example Request & Response:**
 
@@ -322,21 +321,21 @@ https://e2526-wads-b4bc-02.csbihub.id
 
 ## 12. GitHub Contribution Summary
 
-Note: Allen did a mistake that caused the Github contribution to be nuked (which can be seen with how everything seemed to be pushed on the same day), so some of these contributions would likely not align with what is seen on the github.
+Note: Due to a git history reset during development, commit timestamps may not accurately reflect individual contributions.
 
 ### Allenxavinzky Adjiewibowo
 - Features implemented: All AI, including NLP-based Chatbot and OCR, Chat History
 - API endpoints handled: /api/chat, /api/chat/ocr, /api/chat/history
-- Tests written: N/A
-- Security work: 
+- Tests written: Tests are done by Nixon
+- Security work: Input Validation, SQL Injection protection, XSS Protection, CSRF Protection, Secure API Keys, Prompt Injection protection.
 - AI-related work: OpenRouter API integration (DeepSeek model), OCR API integration, system prompt design, multi-turn conversation history
 
 ### Nicholas Nixon
 - Features implemented: Login and Sign in authentication
 - API endpoints handled: /api/auth/login, /api/auth/signup
-- Tests written:
-- Security work:
-- AI-related work:
+- Tests written: Frontend Testing, Backend & API Testing, Security Testing, AI Functionality Testing, OCR Functionality Testing.
+- Security work: Security is done by Allen
+- AI-related work: AI is done by Allen
 
 ---
 
@@ -355,21 +354,24 @@ Note: Allen did a mistake that caused the Github contribution to be nuked (which
 ## 14. Known Limitations & Future Improvements
 
 ### Current Limitations
-- [List any known bugs or limitations]
-- AI responses may vary...
+
+- AI Responses may include halucinations, especially when the AI does not connect to the internet.
 - OCR accuracy depends on image quality and colors of the background
-- - Passwords are stored in plain text as bcrypt hashing not yet implemented
+- OCR only accepts PNG and JPEG
+- Passwords are stored in plain text as bcrypt hashing not yet implemented
 
 ### Future Improvements
-- [List planned enhancements]
+
 - Support for more file formats in OCR
 - Multi-language support
 - Implement bycrpt hashing for more security
+- Add more file type support for OCR functionality
+- Better UI
+- Calculator widget to give users a more intuitive way to input their equations
 
 ### AI Limitations & Risks
 - LLM may occasionally produce incorrect answers (hallucination)
 - OCR accuracy decreases with poor image quality
-- OCR only accepts PNG and JPEG
 - Prompt injection risks mitigated but not fully eliminated
 - No rate limiting on API endpoints — susceptible to abuse/spam
 
