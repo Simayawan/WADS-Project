@@ -227,7 +227,7 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 |-----------|----------|-----------------|--------|
 | FE-01 | Login with valid credentials | Redirect to dashboard | Pass |
 | FE-02 | Login with invalid credentials | Show authorization error | Pass |
-| FE-03 | Submit empty login form | Show pop-up to fill out feild | Pass |
+| FE-03 | Submit empty login form | Show pop-up to fill out field | Pass |
 | FE-04 | Sign up with existing email | Show error message | Pass |
 | FE-05 | Sign up with mismatched passwords | Show authorization error | Pass |
 | FE-06 | Submit question in chat | Display AI response | Pass |
@@ -238,15 +238,15 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 | Test Case | Endpoint | Input | Expected Output | Status |
 |-----------|----------|-------|-----------------|--------|
-| API-01 | POST /api/auth/login | Valid credentials | 200 + JWT token | Pass/Fail |
-| API-02 | POST /api/auth/login | Invalid password | 401 Unauthorized | Pass/Fail |
-| API-03 | POST /api/auth/signup | Valid new user | 201 Created | Pass/Fail |
-| API-04 | POST /api/auth/signup | Duplicate email | 400 Bad Request | Pass/Fail |
-| API-05 | GET /api/chat/history | Valid JWT | 200 + history array | Pass/Fail |
-| API-06 | GET /api/chat/history | No JWT | 401 Unauthorized | Pass/Fail |
-| API-07 | POST /api/chat | Valid question | 200 + AI response | Pass/Fail |
-| API-08 | POST /api/chat/ocr | Valid image | 200 + extracted text | Pass/Fail |
-| API-09 | POST /api/chat/ocr | Invalid file type | 400 Bad Request | Pass/Fail |
+| API-01 | POST /api/auth/login | Valid credentials | 200 + JWT token | Pass |
+| API-02 | POST /api/auth/login | Invalid password | 401 Unauthorized | Pass |
+| API-03 | POST /api/auth/signup | Valid new user | 201 Created | Pass |
+| API-04 | POST /api/auth/signup | Duplicate email | 409 Bad Request | Pass |
+| API-05 | GET /api/chat/history | Valid JWT | 200 + history array | Pass |
+| API-06 | GET /api/chat/history | No JWT | 401 Unauthorized | Pass |
+| API-07 | POST /api/chat | Valid question | 200 + AI response | Pass |
+| API-08 | POST /api/chat/ocr | Valid image | 200 + extracted text | Pass |
+| API-09 | POST /api/chat/ocr | Invalid file type | 400 Bad Request | Pass |
 
 ### 10.3 Security Testing
 
