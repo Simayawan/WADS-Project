@@ -225,14 +225,14 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 | Test Case | Scenario | Expected Result | Status |
 |-----------|----------|-----------------|--------|
-| FE-01 | Login with valid credentials | Redirect to dashboard | Pass/Fail |
-| FE-02 | Login with invalid credentials | Show error message | Pass/Fail |
-| FE-03 | Submit empty login form | Show validation errors | Pass/Fail |
-| FE-04 | Sign up with existing email | Show duplicate error | Pass/Fail |
-| FE-05 | Sign up with mismatched passwords | Show validation error | Pass/Fail |
-| FE-06 | Submit question in chat | Display AI response | Pass/Fail |
-| FE-07 | Upload image for OCR | Display extracted text and answer | Pass/Fail |
-| FE-08 | Access protected page without login | Redirect to login | Pass/Fail |
+| FE-01 | Login with valid credentials | Redirect to dashboard | Pass |
+| FE-02 | Login with invalid credentials | Show authorization error | Pass |
+| FE-03 | Submit empty login form | Show pop-up to fill out feild | Pass |
+| FE-04 | Sign up with existing email | Show error message | Pass |
+| FE-05 | Sign up with mismatched passwords | Show authorization error | Pass |
+| FE-06 | Submit question in chat | Display AI response | Pass |
+| FE-07 | Upload image for OCR | Display extracted text and answer | Pass |
+| FE-08 | Access protected page without login | Redirect to login | Pass |
 
 ### 10.2 Backend & API Testing
 
