@@ -88,10 +88,7 @@ These solutions are appropriate for the problems faced by students because:
 
 ### 5.2 Architecture Explanation
 
-[Explain:]
-- Frontend ↔ API ↔ Database interaction
-- Separation of concerns
-- Where security is enforced
+The Next.js frontend communicates with the database using the API routes, always exclusively.The frontend never accesses the database directly. API routes handle all business logic and external AI calls, while Prisma ORM manages all database queries on the server side. Security is enforced at the API layer, where session cookies are validated before any protected operation is performed.
 
 ---
 
