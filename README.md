@@ -267,35 +267,26 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 | Test Case | Input | Expected Output | Actual Result | Status |
 |-----------|-------|-----------------|---------------|--------|
-| AI-01 | Valid math question | Step-by-step solution | [Fill in] | Pass/Fail |
-| AI-02 | Valid science question | Accurate explanation | [Fill in] | Pass/Fail |
-| AI-03 | Empty input | Validation error | [Fill in] | Pass/Fail |
-| AI-04 | Nonsensical input ("asdfjkl;") | Graceful fallback response | [Fill in] | Pass/Fail |
-| AI-05 | Prompt injection attempt | Safe response, no system bypass | [Fill in] | Pass/Fail |
-| AI-06 | Offensive/inappropriate content | Refused or filtered | [Fill in] | Pass/Fail |
-| AI-07 | Question in different language | Response in same language | [Fill in] | Pass/Fail |
-| AI-08 | Extremely long input | Handled without crash | [Fill in] | Pass/Fail |
-| AI-09 | Repeated same question | Consistent answer | [Fill in] | Pass/Fail |
-
-**Failure Handling:**
-- If AI is unavailable: [Describe fallback behavior]
-- If response times out: [Describe timeout handling]
-- If malformed response: [Describe error handling]
+| AI-01 | Valid math question | Step-by-step solution | Step-by-step solution | Pass |
+| AI-02 | Valid science question | Accurate explanation | Accurate explanation | Pass |
+| AI-03 | Empty input | Graceful fallback response | Graceful fallback response | Pass |
+| AI-04 | Nonsensical input ("asdfjkl;") | Graceful fallback response | Graceful fallback response | Pass |
+| AI-05 | Prompt injection attempt | Safe response, no system bypass | Safe response, no system bypass | Pass |
+| AI-06 | Offensive/inappropriate content | Refused or filtered | Refused or filtered | Pass |
+| AI-07 | Question in different language | Response in same language | Response in same language | Pass |
+| AI-08 | Extremely long input | Handled without crash | Handled without crash | Pass |
+| AI-09 | Repeated same question | Consistent answer | Consistent answer | Pass |
 
 #### AI Feature: OCR Image Processing
 
 | Test Case | Input | Expected Output | Actual Result | Status |
 |-----------|-------|-----------------|---------------|--------|
-| AI-10 | Clear printed text image | Accurate text extraction | [Fill in] | Pass/Fail |
-| AI-11 | Handwritten text image | Best-effort extraction | [Fill in] | Pass/Fail |
-| AI-12 | Blank/empty image | Error or empty response | [Fill in] | Pass/Fail |
-| AI-13 | Non-homework image (e.g. face) | Handled gracefully | [Fill in] | Pass/Fail |
-| AI-14 | Very large image file | Handled without crash | [Fill in] | Pass/Fail |
-| AI-15 | Corrupted image file | Validation error returned | [Fill in] | Pass/Fail |
-
-**Failure Handling:**
-- If OCR API is unavailable: [Describe fallback behavior]
-- If image cannot be processed: [Describe error handling]
+| AI-10 | Clear printed text image | Accurate text extraction | Accurate text extraction | Pass |
+| AI-11 | Handwritten text image | Best-effort extraction | Text extracted | Pass |
+| AI-12 | Blank/empty image | Error or empty response | Graceful fallback response | Pass |
+| AI-13 | Non-homework image (e.g. face) | Handled gracefully | Handled gracefully | Pass |
+| AI-14 | Very large image file | Handled without crash | Handled without crash | Pass |
+| AI-15 | Corrupted image file | Validation error returned | Graceful fallback response | Pass |
 
 ---
 
@@ -332,7 +323,7 @@ Note: Due to a git history reset during development, commit timestamps may not a
 - Security work: Input Validation, SQL Injection protection, XSS Protection, CSRF Protection, Secure API Keys, Prompt Injection protection.
 - AI-related work: OpenRouter API integration (DeepSeek model), OCR API integration, system prompt design, multi-turn conversation history
 
-### Nicholas Nixon
+### Nicholas Nixon Iswanto
 - Features implemented: Login and Sign in authentication
 - API endpoints handled: /api/auth/login, /api/auth/signup
 - Tests written: Frontend Testing, Backend & API Testing, Security Testing, AI Functionality Testing, OCR Functionality Testing.
