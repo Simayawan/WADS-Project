@@ -16,7 +16,7 @@
 
 | Name | Student ID | Role | GitHub Username |
 |------|------------|------|-----------------|
-|Allenxavinzky Adjiewibowo|2802467880|Frontend, AI Implementation|Simayawan|
+|Allenxavinzky Adjiewibowo|2802467880|Frontend, AI Implementation, Security |Simayawan|
 |Nicholas Nixon Iswanto|2802546664|Testing, Backend|NicholasNixon10|
 ---
 
