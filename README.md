@@ -36,11 +36,6 @@ This repository must be shared with:
 ## 3. Project Overview
 
 ### 3.1 Problem Statement
-
-[Explain:]
-- What problem does this application solve?
-- Who are the target users?
-
 This Web App aims to help students with their homework  
 by giving them valuable explainations using AI, as well  
 as allowing them to take a picture of their homework  
@@ -53,10 +48,6 @@ detail.
 ### 3.2 Solution Overview
 
 [Briefly describe:]
-- Main features
-- Why this solution is appropriate
-- Where AI is used  
-
 There are two main features of this Web App:  
 - OCR
 - NLP
