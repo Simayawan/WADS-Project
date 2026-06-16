@@ -252,7 +252,7 @@ Input (image upload) → OCR API → Extracted text → Passed to LLM → Answer
 
 | Test Case | Attack Type | Expected Behavior | Result |
 |-----------|-------------|-------------------|--------|
-| SEC-01 | XSS — script tag in chat input | Input sanitized, script not executed | Pass |
+| SEC-01 | XSS, script tag in chat input | Input sanitized, script not executed | Pass |
 | SEC-02 | SQL Injection in login | Query blocked by Prisma ORM | Pass |
 | SEC-03 | Access protected route without token | 401 Unauthorized returned | Pass |
 | SEC-04 | Prompt injection in chat | AI response stays within bounds | Pass |
