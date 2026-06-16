@@ -366,7 +366,7 @@ Note: Due to a git history reset during development, commit timestamps may not a
 - LLM may occasionally produce incorrect answers (hallucination)
 - OCR accuracy decreases with poor image quality
 - Prompt injection risks mitigated but not fully eliminated
-- No rate limiting on API endpoints — susceptible to abuse/spam
+- No rate limiting on API endpoints, susceptible to abuse/spam
 
 ---
 
